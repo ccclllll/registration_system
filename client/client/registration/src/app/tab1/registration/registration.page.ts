@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OfficeService } from '../../shared/services/OfficeService';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationPage implements OnInit {
 
-  constructor() { }
+  constructor(private officeService: OfficeService) { }
 
   ngOnInit() {
+    this.officeService.getAllOfiice().subscribe(it => {
+      console.log(it);
+    });
   }
 
 }

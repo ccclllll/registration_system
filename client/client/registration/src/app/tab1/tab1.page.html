@@ -36,7 +36,7 @@
 
         <ion-grid>
           <ion-row>
-            <ion-col>
+            <ion-col (click)="nav('registration')">
               预约挂号
             </ion-col>
           </ion-row>
@@ -55,7 +55,7 @@
     <ion-list-header>
       <ion-label>我的健康</ion-label>
     </ion-list-header>
-    <ion-item href="https://ionicframework.com/docs/">
+    <ion-item (click)="nav('registration')">
       <ion-icon slot="start" color="medium" name="book"></ion-icon>
       <ion-label>挂号记录</ion-label>
     </ion-item>

@@ -13,8 +13,6 @@ export class HttpFilter implements HttpInterceptor {
 
   BASEURL: String = 'http://localhost:8088';
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-
     if (request.url !== `${BASEURL}/api/login` && localStorage.getItem('token')) {
       request = request.clone({
         setHeaders: {
@@ -22,6 +20,7 @@ export class HttpFilter implements HttpInterceptor {
         }
       });
     }
+    // console.log(request)
     return next.handle(request);
   }
 }

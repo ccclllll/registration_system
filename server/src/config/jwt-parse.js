@@ -1,7 +1,12 @@
 const jwt = require('jsonwebtoken')
 module.exports = function jwt_parse(){
   return async function(ctx,next){
+    if(ctx.request.url.match(/^\/api\/login/)|| ctx.request.url.match(/^\/api\/register/)){
+      await next();
+      return;
+    }
     try{
+      console.log(ctx.get('Authorization'))
       let token = ctx.get('Authorization').split(' ')[1];
       var decoded = jwt.verify(token, 'registration_system');
       let dbo = await ctx.mongodbUtil.dbo();
@@ -14,8 +19,7 @@ module.exports = function jwt_parse(){
       ctx.user = res;
     }catch(err){
       ctx.body = {
-        code:500,
-        message:'server error'
+        code:401
       }
     }
     await next()

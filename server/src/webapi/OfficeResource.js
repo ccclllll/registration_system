@@ -9,7 +9,7 @@ class OfficeResource {
       method: 'get',
       option: 'getOffices'
     }, {
-      url: 'api/office',
+      url: '/api/office',
       method: 'post',
       option: 'addOffice'
     }];
@@ -20,15 +20,17 @@ class OfficeResource {
     let query = ctx.request.query;
     let dbo = await ctx.mongodbUtil.dbo();
     let baseDao = ctx.baseDao;
-    let res = await baseDao.find(dbo, 'workforce', {},true);
+    let res = await baseDao.find(dbo, 'office', {},true);
     ctx.body = res;
   }
 
   // 增加科室
   async addOffice(ctx){
+    console.log('office')
     let office = new Office(ctx.request.body);
     try{
       let dbo = await ctx.mongodbUtil.dbo();
+      let baseDao = ctx.baseDao;
       let res = await baseDao.add(dbo, 'office',office);
       ctx.body = res;
     }catch(err){

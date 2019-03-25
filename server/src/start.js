@@ -19,11 +19,11 @@ const BaseDao = require('./dao/BaseDao')
 const jwt_parse = require('./config/jwt-parse')
 async function startApp() {
   const app = new Koa();
-  app.use(jwtKoa({
-    secret: environment.secret
-  }).unless({
-    path: [/^\/api\/login/,/^\/api\/register/] //数组中的路径不需要通过jwt验证
-  }))
+  // app.use(jwtKoa({
+  //   secret: environment.secret
+  // }).unless({
+  //   path: [/^\/api\/login/,/^\/api\/register/] //数组中的路径不需要通过jwt验证
+  // }))
 
   app.use(jwt_parse())
   // 将mongodb实例挂载到上下文
@@ -43,7 +43,7 @@ async function startApp() {
   app.listen(environment.port);
 
   const socketServer = new SocketServer();
-  
+
   socketServer.start();
   console.log("server in run");
 }

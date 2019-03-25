@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
