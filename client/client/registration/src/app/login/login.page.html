@@ -1,0 +1,44 @@
+<!--
+  Generated template for the MorePage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>
+          Login
+        </ion-title>
+      </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
+      <ion-slide class="slide-background swiper-no-swiping" *ngFor="let background of backgrounds" [ngStyle]="{'background-image': 'url(' + background +')'}">
+      </ion-slide>
+    </ion-slides>
+    <div class="login-container">
+    <!--  <img class="logo" src="../../assets/imgs/no-image.jpg" />-->
+      <div style="margin-top: 150px">
+  
+      </div>
+      <form (submit)="onLoggedin()">
+        <strong>欢迎登录</strong>
+        <ion-item>
+          <ion-input type="username" placeholder="学号/工号" name="code" [(ngModel)]="loginVM.code"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="密码" name="password" [(ngModel)]="loginVM.password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>选择角色</ion-label>
+            <ion-select placeholder="Select One" [(ngModel)]="loginVM.role" name="role">
+              <ion-select-option value="student">学生</ion-select-option>
+              <ion-select-option value="doctor">医生</ion-select-option>
+            </ion-select>
+          </ion-item>
+        <ion-button color="danger" shape="round" expand="full" (click)="onLoggedin()">登录</ion-button>
+     
+        <ion-button shape="round" expand="full">注册</ion-button>
+        <ion-button shape="round" expand="full">忘记密码</ion-button>
+      </form>
+    </div>
+  </ion-content>
