@@ -11,7 +11,7 @@ import { Tab1Page } from './tab1.page';
     CommonModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page },
-     { path: 'registration', loadChildren: './tab1/registration/registration.module#RegistrationPageModule' }])
+     { path: 'registration', loadChildren: './registration/registration.module#RegistrationPageModule' }])
   ],
   declarations: [Tab1Page]
 })

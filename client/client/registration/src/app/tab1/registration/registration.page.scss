@@ -1,0 +1,32 @@
+.list-item {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &>div {
+    display: flex;
+    align-items: center;
+  }
+
+  &>:nth-child(1) {
+    height: 100%;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  &>:nth-child(2) {
+    margin-left: 10px;
+    height: 100%;
+    flex: 1;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    p {
+      margin: 0
+    }
+  }
+}

@@ -7,7 +7,7 @@ MongodbUtil.prototype.dbo = function () {
     return new Promise((resolve, reject) => {
         MongoClient.connect(`${this.url}/`, { useNewUrlParser: true }, (err, db) => {
             if (err) reject(err);
-            console.log('数据库连接成功！');
+
             this.db = db;
             resolve(this.db.db(this.dbname));
         });

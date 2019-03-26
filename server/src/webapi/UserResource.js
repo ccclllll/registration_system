@@ -101,8 +101,6 @@ class UserResource {
           id: user.id,
           role:user.role
         });
-        console.log(res)
-
         if (res[0].password === user.password) {
           if (true) {
             const token = jwt.sign(user, environment.secret, {

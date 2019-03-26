@@ -7,44 +7,83 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder="请输入科室"></ion-searchbar>
-  <ion-list>
-    <ion-item>
-      <ion-label>
-        Item
-      </ion-label>
-    </ion-item>
+  <ng-container [ngTemplateOutlet]="officeTemplate" *ngIf="template === 'officeTemplate'">
 
-    <ion-item lines="none">
-      <ion-label>
-        No Lines Item
-      </ion-label>
-    </ion-item>
+  </ng-container>
+  <ng-container [ngTemplateOutlet]="workforceTemplate" *ngIf="template === 'workforceTemplate'">
 
-    <ion-item>
-      <ion-label text-wrap>
-        Multiline text that should wrap when it is too long
-        to fit on one line in the item.
-      </ion-label>
-    </ion-item>
+  </ng-container>
+  <ng-template #officeTemplate>
+    <ion-searchbar placeholder="请输入科室"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let office of offices" (click)="findDoctor(office)">
+        <ion-label>
+          {{office.name}}
+        </ion-label>
+      </ion-item>
 
-    <ion-item>
-      <ion-label text-wrap>
-        <ion-text color="primary">
-          <h3>H3 Primary Title</h3>
-        </ion-text>
-        <p>Paragraph line 1</p>
-        <ion-text color="secondary">
-          <p>Paragraph line 2 secondary</p>
-        </ion-text>
-      </ion-label>
-    </ion-item>
+    </ion-list>
+  </ng-template>
 
-    <ion-item lines="full">
-      <ion-label>
-        Item with Full Lines
-      </ion-label>
-    </ion-item>
+  <ng-template #workforceTemplate>
 
-  </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          不限
+        </ion-col>
+        <ion-col>
+          周一
+        </ion-col>
+        <ion-col>
+          周二
+        </ion-col>
+        <ion-col>
+          周三
+        </ion-col>
+        <ion-col>
+          周四
+        </ion-col>
+        <ion-col>
+          周五
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>医生列表</ion-card-subtitle>
+      </ion-card-header>
+      <!-- <ion-list>
+        <ion-item *ngFor="let office of offices">
+          
+          <ion-label>
+            {{office.name}}
+          </ion-label>
+          <ion-button slot="end">
+            预约
+          </ion-button>
+        </ion-item>
+
+      </ion-list> -->
+      <ion-row wrap>
+        <ion-col tappable col-6 *ngFor="let office of offices">
+          <div class="list-item">
+            <div>
+              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553534944811&di=636f16b83528ec33e4319b519cde911a&imgtype=0&src=http%3A%2F%2Fpic14.nipic.com%2F20110424%2F7248368_222745440106_2.jpg" alt="" />
+            </div>
+            <div>
+              <p>张三</p>
+              <p>内科</p>
+            </div>
+            <div>
+              预约
+            </div>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+  </ng-template>
 </ion-content>

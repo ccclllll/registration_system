@@ -8,12 +8,19 @@ import { OfficeService } from '../../shared/services/OfficeService';
 })
 export class RegistrationPage implements OnInit {
 
+  offices = [];
+  template = 'officeTemplate';
   constructor(private officeService: OfficeService) { }
 
   ngOnInit() {
     this.officeService.getAllOfiice().subscribe(it => {
-      console.log(it);
+      this.offices = it;
     });
+  }
+
+  findDoctor(office) {
+    console.log(office)
+    this.template = 'workforceTemplate';
   }
 
 }
