@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content style="background-color: #EDEDED" [color]="'dark'">
-  <div *ngFor="let message of messages" class="message" [ngClass]="{'self':message.from === userId}">
+  <div *ngFor="let message of messages" class="message" [ngClass]="{'self':message.from === userVM.id}">
     <div class="user-img">
       <img src="../../assets/img/girl.png" alt="">
     </div>

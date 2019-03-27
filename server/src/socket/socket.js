@@ -16,14 +16,14 @@ module.exports =  function SocketServer(port) {
           connObj[msg.userId] = socket;
         }else{
           if(connObj[msg.to]){
-            connObj[msg.to].send(msg.details)
+            connObj[msg.to].send(msg.detail)
           }
         }
       })
       // socket.send("发送的消息");
       //断开连接
       socket.on("close",function(){
-        connNum.splice(connNum.indexOf(this),1);
+        //connNum.splice(connNum.indexOf(this),1);
       })
    
     })
