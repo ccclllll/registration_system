@@ -10,6 +10,8 @@ export class RegistrationPage implements OnInit {
 
   offices = [];
   template = 'officeTemplate';
+  selectedOffice;
+  officeDoctors = [];
   constructor(private officeService: OfficeService) { }
 
   ngOnInit() {
@@ -19,8 +21,11 @@ export class RegistrationPage implements OnInit {
   }
 
   findDoctor(office) {
-    console.log(office)
+    this.selectedOffice = office;
     this.template = 'workforceTemplate';
+    this.officeService.getOfficeDoctor(office.id).subscribe(it => {
+      this.officeDoctors = it;
+    });
   }
 
 }

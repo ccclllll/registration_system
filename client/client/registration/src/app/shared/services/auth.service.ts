@@ -19,17 +19,20 @@ export class AuthService {
   getToken(userVM: any): Observable<any> {
 
     return this.http.post(`${BASEURL}/api/login`, userVM).pipe(
-      tap(it => this.handleResult(it))
+      tap(it => this.handleResult(it, userVM))
     );
 
   }
 
-  handleResult(it: any) {
+  handleResult(it: any, userVM: any) {
     this.token.next(it);
     console.log(it);
     localStorage.setItem('token', it.token);
+
+   // console.log(userVM.code)
     const date = (new Date()).getTime();
     localStorage.setItem('loginTime', date + '');
+    localStorage.setItem('userVM', JSON.stringify(userVM));
   }
 
   getUser(): Observable<any> {
@@ -37,7 +40,7 @@ export class AuthService {
   }
 
   getUserById(id: number): Observable<any> {
-    return this.http.get(`${BASEURL}/api/user/${id}`);
+    return this.http.get(`${BASEURL}/api/user?id=${id}`);
   }
 
   clearToken() {

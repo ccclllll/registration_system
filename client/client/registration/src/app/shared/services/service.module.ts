@@ -4,6 +4,7 @@ import { HttpFilter } from './http-filter';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { OfficeService } from './OfficeService';
+import { WorkforceService } from './WorkforceService';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { OfficeService } from './OfficeService';
     AuthService,
     // HttpFilter,
     OfficeService,
+    WorkforceService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpFilter, multi: true},
   ]
 

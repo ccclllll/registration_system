@@ -13,6 +13,7 @@
   <ng-container [ngTemplateOutlet]="workforceTemplate" *ngIf="template === 'workforceTemplate'">
 
   </ng-container>
+
   <ng-template #officeTemplate>
     <ion-searchbar placeholder="请输入科室"></ion-searchbar>
     <ion-list>
@@ -66,24 +67,30 @@
         </ion-item>
 
       </ion-list> -->
-      <ion-row wrap>
-        <ion-col tappable col-6 *ngFor="let office of offices">
-          <div class="list-item">
-            <div>
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553534944811&di=636f16b83528ec33e4319b519cde911a&imgtype=0&src=http%3A%2F%2Fpic14.nipic.com%2F20110424%2F7248368_222745440106_2.jpg" alt="" />
-            </div>
-            <div>
-              <p>张三</p>
-              <p>内科</p>
-            </div>
-            <div>
-              预约
-            </div>
+      <ion-row wrap *ngFor="let doctor of officeDoctors">
+        <div class="list-item">
+          <div>
+            <img
+              src="../../../assets/img/doctor.png"
+              alt="" />
           </div>
+          <div>
+            <p>{{doctor.name}}</p>
+            <p>{{selectedOffice.name}}</p>
+          </div>
+          <div [routerLink]="['/tabs/tab1/registration/doctor',doctor.id]">
+            预约
+          </div>
+        </div>
 
-        </ion-col>
       </ion-row>
     </ion-card>
 
   </ng-template>
+
+  <ng-template #doctorMain>
+
+
+  </ng-template>
+
 </ion-content>

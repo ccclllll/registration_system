@@ -10,7 +10,7 @@ class WorkforceResource {
       method: 'get',
       option: 'getCurrentWorkforce'
     }, {
-      url: '/api/workforces',
+      url: '/api/doctor_workforces',
       method: 'get',
       option: 'getAllWorkforce'
     }, {
@@ -37,6 +37,21 @@ class WorkforceResource {
     let query = ctx.request.query;
     let dbo = await ctx.mongodbUtil.dbo();
     let baseDao = ctx.baseDao;
+    let date = new Date();
+    //let dateStr = date.ge
+    let res = await baseDao.find(dbo, 'workforce', {
+      doctor: query.doctorId
+    });
+    ctx.body = res;
+  }
+
+
+  async getWorkforceById(ctx){
+    let query = ctx.request.query;
+    let dbo = await ctx.mongodbUtil.dbo();
+    let baseDao = ctx.baseDao;
+    let date = new Date();
+    //let dateStr = date.ge
     let res = await baseDao.find(dbo, 'workforce', {
       doctor: query.doctorId
     });
@@ -47,6 +62,7 @@ class WorkforceResource {
   async addWorkforce(ctx){
     let workforce = new Workforce(ctx.request.body);
     try{
+      let baseDao = ctx.baseDao;
       let dbo = await ctx.mongodbUtil.dbo();
       let res = await baseDao.add(dbo, 'workforce', workforce);
       ctx.body = res;

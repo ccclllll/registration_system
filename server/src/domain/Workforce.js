@@ -6,18 +6,16 @@ module.exports = class Workforce {
   constructor({
     date,
     doctor,
-    am,
-    pm,
-    amNumber,
-    pmNumber,
-    office
+    preNumber,
+    realNumber,
+    office,
+    timeQuantum
   }) {
     this.date = date;
     this.doctor = doctor;
-    this.am = am;
-    this.pm = pm;
-    this.amNumber = amNumber;
-    this.pmNumber = pmNumber;
+    this.realNumber = realNumber;
+    this.preNumber = preNumber;
+    this.timeQuantum = timeQuantum;
     this.office = office;
   }
 }

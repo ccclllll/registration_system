@@ -10,7 +10,6 @@ export class Tab1Page {
 
   }
   nav(url: String) {
-    console.log('nav')
     this.router.navigate(['tabs/tab1/' + url]);
   }
 }

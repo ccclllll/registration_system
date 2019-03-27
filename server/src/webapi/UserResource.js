@@ -51,6 +51,20 @@ class UserResource {
       let dbo = await ctx.mongodbUtil.dbo();
       let baseDao = ctx.baseDao;
       let user = new User(ctx.request.body);
+      if(user.office){
+        let office = await baseDao.find(dbo, 'office', {
+          id: user.office
+        });
+        if(office.length<=0){
+          ctx.body = {
+            code:410,
+            err: 'office not exsit'
+          }
+          return;
+        }
+      }
+
+      
       let list = await baseDao.find(dbo, 'user', {
         id: user.id
       });

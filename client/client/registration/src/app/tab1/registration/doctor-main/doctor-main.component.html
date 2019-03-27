@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="doctor-info">
+    <div>
+      <img>
+
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class="workforce-list">
+    <div class="workforce-item" *ngFor="let workforce of workforces">
+      <div>
+        <span>{{workforce.date}}</span> <span>{{workforce.timeQuantum}}</span>
+      </div>
+      <div>
+        <span>普通门诊</span>
+      </div>
+      <div>
+        <ion-button (click)="createAddOrderModal(workforce)">挂号</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

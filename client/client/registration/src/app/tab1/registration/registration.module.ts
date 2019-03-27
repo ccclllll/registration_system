@@ -6,11 +6,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RegistrationPage } from './registration.page';
+import { DoctorMainComponent } from './doctor-main/doctor-main.component';
+import { AddOrderComponent } from './add-order/add-order.component';
 
 const routes: Routes = [
   {
     path: '',
     component: RegistrationPage
+  },
+  {
+    path: 'doctor/:doctorId',
+    component: DoctorMainComponent
+  }, {
+    path: 'add_order',
+    component: AddOrderComponent
   }
 ];
 
@@ -21,6 +30,13 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RegistrationPage]
+  declarations: [
+    RegistrationPage,
+    DoctorMainComponent,
+    AddOrderComponent
+  ],
+  exports: [
+    DoctorMainComponent
+  ]
 })
-export class RegistrationPageModule {}
+export class RegistrationPageModule { }

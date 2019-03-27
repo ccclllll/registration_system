@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()" id="close-modal">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">姓名</ion-label>
+      <ion-input [disabled]="true" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">科室</ion-label>
+      <ion-input [disabled]="true" [(ngModel)]="office.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">医生</ion-label>
+      <ion-input [disabled]="true" [(ngModel)]="doctor.name"></ion-input>
+      <!-- <ion-text color="secondary">
+          <p>{{doctor.name}}</p>
+        </ion-text> -->
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">日期</ion-label>
+      <ion-input [disabled]="true" [(ngModel)]="workforce.date"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">时间段</ion-label>
+      <ion-input [disabled]="true" [(ngModel)]="workforce.timeQuantum"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button shape="round" expand="full">确认预约</ion-button>
+</ion-content>
