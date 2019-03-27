@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>chat</ion-title>
+  </ion-toolbar>
+
+
+
+</ion-header>
+
+<ion-content style="background-color: #EDEDED" [color]="'dark'">
+  <div *ngFor="let message of messages" class="message" [ngClass]="{'self':message.from === userId}">
+    <div class="user-img">
+      <img src="../../assets/img/girl.png" alt="">
+    </div>
+    <div class="message-body">
+      <div class="user-message">
+        {{message.detail}}
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+
+<ion-footer class="footer-wrap">
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="message"></ion-textarea>
+
+  </ion-item>
+  <ion-button slot="end" (click)="send()">发送</ion-button>
+
+</ion-footer>

@@ -9,31 +9,39 @@
 <ion-content>
 
   <!-- <div>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              预约挂号
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              问医生
-            </ion-col>
-            <ion-col>
-              挂号记录
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div> -->
+    <ion-grid>
+    
+      <ion-row>
+        <ion-col>
+          <img src="../../assets/img/boy.png">
+          <span>预约挂号</span>
+        </ion-col>
+        <ion-col>
+          <img src="../../assets/img/boy.png">
+          <span>问医生</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <img src="../../assets/img/boy.png">
+          <span>开假条</span>
+        </ion-col>
+        <ion-col>
+          <img src="../../assets/img/boy.png">
+          <span>问医生</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
 
-  
-    <ion-card class="welcome-card">
+
+
+  <!-- <ion-card class="welcome-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
         <ion-card-title>快捷服务</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-
         <ion-grid>
           <ion-row>
             <ion-col (click)="nav('registration')">
@@ -47,21 +55,47 @@
           </ion-row>
         </ion-grid>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 
+  <div class="predict" (click)="nav('registration')">
+    <img src="../../assets/img/doctor-bg.jpg">
+    <span>预约挂号 >></span>
+  </div>
 
 
   <ion-list lines="none">
     <ion-list-header>
       <ion-label>我的健康</ion-label>
     </ion-list-header>
-    <ion-item>
+
+    <ion-item href="">
       <ion-icon slot="start" color="medium" name="book"></ion-icon>
       <ion-label>挂号记录</ion-label>
     </ion-item>
-    <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-      <ion-icon slot="start" color="medium" name="build"></ion-icon>
-      <ion-label>我的假条</ion-label>
-    </ion-item>
   </ion-list>
+  <ion-list-header>
+    <ion-label>我的预约</ion-label>
+  </ion-list-header>
+
+  <ion-card style="margin-left: 0;margin-right: 0;">
+    <ion-item>
+      <ion-label>就诊人:</ion-label>
+      <ion-note slot="end">挂号成功</ion-note>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-note slot="start">就诊科室</ion-note>
+        <ion-label>内科</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-note slot="start">就诊时间</ion-note>
+        <ion-label>2019-04-25</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-button fill="outline" slot="end">申请假条</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

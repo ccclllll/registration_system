@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      个人中心
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+      <ion-item [routerLink]="['/tabs/tab3/user_info']">
+          <ion-icon slot="start" color="medium" name="book"></ion-icon>
+          <ion-label>我的信息</ion-label>
+        </ion-item>
+        <ion-item [routerLink]="['/tabs/tab3/student_order']">
+          <ion-icon slot="start" color="medium" name="build"></ion-icon>
+          <ion-label>我的假条</ion-label>
+        </ion-item>
+  </ion-list>
+</ion-content>

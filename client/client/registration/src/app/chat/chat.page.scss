@@ -1,0 +1,79 @@
+ion-content {
+    background-color: #EDEDED;
+}
+
+ion-footer {
+    background-color: #f6f6f6;
+    padding: 5px 10px;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+
+    ion-item {
+        flex: 1;
+        margin-right: 5px;
+    }
+
+    ion-textarea {
+        height: 6vh;
+    }
+
+    ion-button {
+        width: 50px;
+        height: 6vh;
+    }
+}
+
+.footer-wrap {
+    background-color: #B5B5B5;
+
+}
+
+.message {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 40px;
+    width: 100%;
+    padding: 5px;
+    color: black;
+
+    .user-img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .message-body {
+        display: flex;
+        width: 100%;
+
+    }
+
+    .user-message {
+        background-color: #ffffff;
+        min-height: 30px;
+        max-width: 60%;
+        border-radius: 2px;
+        align-items: center;
+        display: flex;
+        padding: 5px;
+        word-break: break-all;
+        /* 支持IE和chrome，FF不支持*/
+        word-wrap: break-word;
+        /* 以上三个浏览器均支持 */
+    }
+
+    .user-message::before {
+        content: '';
+        height: 5px;
+        width: 5px;
+        background-color: #ffffff;
+    }
+}
+
+.message.self {
+    flex-direction: row-reverse;
+
+    .message-body {
+        justify-content: flex-end;
+    }
+}
