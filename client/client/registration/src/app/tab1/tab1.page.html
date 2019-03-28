@@ -58,8 +58,11 @@
     </ion-card> -->
 
   <div class="predict" (click)="nav('registration')">
-    <img src="../../assets/img/doctor-bg.jpg">
-    <span>预约挂号 >></span>
+    <img src="../../assets/img/shida.jpg">
+    <!-- <div>
+      <span>预约挂号 >></span>
+    </div> -->
+
   </div>
 
 
@@ -67,9 +70,12 @@
     <ion-list-header>
       <ion-label>我的健康</ion-label>
     </ion-list-header>
-
+    <ion-item (click)="nav('registration')">
+      <ion-icon slot="start" color="medium" src="../../assets/img/guahao.svg"></ion-icon>
+      <ion-label>预约挂号</ion-label>
+    </ion-item>
     <ion-item href="">
-      <ion-icon slot="start" color="medium" name="book"></ion-icon>
+      <ion-icon slot="start" color="medium" src="../../assets/img/guahaojilu.svg"></ion-icon>
       <ion-label>挂号记录</ion-label>
     </ion-item>
   </ion-list>
@@ -77,20 +83,20 @@
     <ion-label>我的预约</ion-label>
   </ion-list-header>
 
-  <ion-card style="margin-left: 0;margin-right: 0;">
+  <ion-card style="margin-left: 0;margin-right: 0;" *ngFor="let registration of registrations">
     <ion-item>
-      <ion-label>就诊人:</ion-label>
+      <ion-label>就诊人:{{registration.patient.name}}</ion-label>
       <ion-note slot="end">挂号成功</ion-note>
     </ion-item>
 
     <ion-card-content>
       <ion-item>
         <ion-note slot="start">就诊科室</ion-note>
-        <ion-label>内科</ion-label>
+        <ion-label>{{registration.office.name}}</ion-label>
       </ion-item>
       <ion-item>
         <ion-note slot="start">就诊时间</ion-note>
-        <ion-label>2019-04-25</ion-label>
+        <ion-label>{{registration.date | date: 'yyyy-MM-dd'}}</ion-label>
       </ion-item>
 
       <ion-item lines="none">

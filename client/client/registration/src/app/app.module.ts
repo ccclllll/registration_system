@@ -14,7 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot({
+    backButtonText: '返回'
+  }), AppRoutingModule,
     HttpClientModule, ServiceModule],
   providers: [
     StatusBar,

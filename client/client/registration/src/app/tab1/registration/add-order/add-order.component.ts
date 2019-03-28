@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../../../shared/services/auth.service';
 import { OfficeService } from '../../../shared/services/OfficeService';
+import { RegistrationService } from '../../../shared/services/registration.service';
 
 @Component({
   selector: 'app-add-order',
@@ -12,10 +13,11 @@ export class AddOrderComponent implements OnInit {
 
   dateTime = '上午';
   workforce: any = {};
-  doctor = { name: '12' };
-  user = {};
-  office = {};
-  constructor(private modalCtrl: ModalController, navParams: NavParams, public auth: AuthService, public officeService: OfficeService) {
+  doctor: any = { name: '12' };
+  user: any = {};
+  office: any = {};
+  constructor(private modalCtrl: ModalController, navParams: NavParams, public auth: AuthService, public officeService: OfficeService,
+    public registrationService: RegistrationService, public loadingController: LoadingController, public alertController: AlertController) {
     this.workforce = navParams.get('workforce');
     this.getDoctor();
     this.getUser();
@@ -42,6 +44,56 @@ export class AddOrderComponent implements OnInit {
   ngOnInit() { }
   closeModal() {
     this.modalCtrl.dismiss();
+  }
+
+  addOrder = async () => {
+    // this.office = office;
+    // this.doctor = doctor;
+    // this.date = date;
+    // this.patientId = patientId;
+    // this.phoneNumber = phoneNumber;
+    // this.workforce = workforce;
+    const registration = {
+      office: this.office.id,
+      doctor: this.doctor.id,
+      date: new Date().toJSON(),
+      patientId: this.user.id,
+      workforce: this.workforce.id
+    };
+    console.log(this.workforce);
+    const loading = await this.loadingController.create({
+      message: 'Hellooo',
+      duration: 2000
+    });
+    await loading.present();
+    this.registrationService.addRegistration(registration).subscribe(it => {
+      console.log(it);
+      loading.dismiss();
+
+    });
+
+    await loading.onDidDismiss();
+
+
+
+
+  }
+
+  formatDate(date) {
+
+
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Hellooo',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+
+    console.log('Loading dismissed!');
   }
 
 }

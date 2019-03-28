@@ -8,7 +8,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class LoginPage {
 
-  backgrounds: string[] = ['https://img02.sogoucdn.com/app/a/100520093/0e0fd862f51611ae-a90dafa354d6f346-6cc1a44a325037bd113b83a7243ce3e4.jpg'];
+  backgrounds: string[] = ['../../assets/img/bg2.jpg'];
   loginVM = { code: '150154057', password: '123456', role: 'student' };
   constructor(public router: Router, private auth: AuthService) {
   }

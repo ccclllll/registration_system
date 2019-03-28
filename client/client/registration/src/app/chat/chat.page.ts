@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -11,24 +12,19 @@ export class ChatPage implements OnInit {
   otherId = '111115';
   studentId = '150154057';
   message: String = '2322343';
-  messages: any = [{
-    detail: 'hello',
-    type: 'text',
-    from: this.otherId,
-    to: this.userId,
-  }, {
-    detail: 'hello',
-    type: 'text'
-  }, {
-    detail: 'hello',
-    type: 'text'
-  }];
+  messages: any = [];
   socket;
+
+  other = {};
   userVM = JSON.parse(localStorage.getItem('userVM'));
-  constructor() { }
+  constructor(private routerinfo: ActivatedRoute) { }
 
   ngOnInit() {
-    this.createSockt()
+    this.createSockt();
+    this.routerinfo.params.subscribe(par => {
+      this.other = JSON.parse(par['other'])[0];
+      console.log(this.other);
+    });
   }
   send() {
     // this.messages.push(this.message);
@@ -38,7 +34,6 @@ export class ChatPage implements OnInit {
     //   from: this.userId,
     //   to: this.messages
     // });
-    console.log('send')
     const otherId = this.otherId;
     const to = this.userVM.role === 'student' ? this.otherId : this.studentId;
     const from = this.userVM.id;

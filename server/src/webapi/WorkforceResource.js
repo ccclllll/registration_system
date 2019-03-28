@@ -61,6 +61,7 @@ class WorkforceResource {
   // 增加排班
   async addWorkforce(ctx){
     let workforce = new Workforce(ctx.request.body);
+    workforce.id = workforce.doctor+ workforce.date;
     try{
       let baseDao = ctx.baseDao;
       let dbo = await ctx.mongodbUtil.dbo();

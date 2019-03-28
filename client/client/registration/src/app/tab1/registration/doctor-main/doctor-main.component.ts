@@ -17,6 +17,7 @@ export class DoctorMainComponent implements OnInit {
   doctor = {};
   workforces = [];
   user = {};
+  doctorStr = '';
   constructor(private routerinfo: ActivatedRoute, public workforceService: WorkforceService, public modalCtr: ModalController,
     public auth: AuthService) { }
 
@@ -29,6 +30,7 @@ export class DoctorMainComponent implements OnInit {
       this.doctor = this.auth.getUserById(this.doctorId).subscribe(it => {
         console.log(it);
         this.doctor = it;
+        this.doctorStr = JSON.stringify(this.doctor);
       });
     });
   }
