@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: '', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
-  { path: 'chat/:other', loadChildren: './chat/chat.module#ChatPageModule' },
+  { path: 'chat/:otherId', loadChildren: './chat/chat.module#ChatPageModule' },
 
 ];
 @NgModule({

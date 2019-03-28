@@ -8,16 +8,19 @@
 
 <ion-content>
   <ion-list>
-    
-    <ion-item *ngFor="let contact of contacts">
+
+    <ion-item *ngFor="let data of contacts">
       <ion-thumbnail slot="start">
         <img src="../../assets/img/girl.png">
       </ion-thumbnail>
       <ion-label>
-        <h2>{{contact.name}}</h2>
-        <p>{{contact.message}}</p>
+        <h2>{{data.contact.name}}</h2>
+        <p>{{data.message.detail}}</p>
       </ion-label>
-      <ion-button fill="outline" slot="end"  [routerLink]="['/chat']">View</ion-button>
+      <ion-button fill="outline" slot="end"
+        [routerLink]="['/chat',data.message.from==user.id?data.message.to:data.message.from]">
+        View
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

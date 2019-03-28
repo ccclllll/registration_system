@@ -7,7 +7,7 @@ class BillResource {
     this.path = [{
       url: 'api/apply_bill',
       method: 'post',
-      option: 'addOffice'
+      option: 'applyBill'
     }];
   }
 

@@ -9,7 +9,7 @@ class UserResource {
       method: 'get',
       option: 'getUser'
     }, {
-      url: 'api/user',
+      url: '/api/user',
       method: 'delete',
       option: 'deleteUserById'
     }, {

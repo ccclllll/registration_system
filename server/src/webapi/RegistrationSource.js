@@ -9,7 +9,7 @@ class RegistrationResource {
       method: 'get',
       option: 'getCurrentDoctors'
     }, {
-      url: 'api/office_doctors',
+      url: '/api/office_doctors',
       method: 'get',
       option: 'getAllDoctors'
     }, {

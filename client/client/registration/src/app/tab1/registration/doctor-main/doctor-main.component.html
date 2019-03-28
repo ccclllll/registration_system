@@ -45,7 +45,7 @@
       <ion-button (click)="createAddOrderModal(workforce)">挂号</ion-button>
     </ion-item>
   </ion-list>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" [routerLink]="['/chat',doctorStr]">
+  <ion-fab vertical="top" horizontal="end" slot="fixed" [routerLink]="['/chat',doctor[0].id]">
       <ion-fab-button color="light">
         <ion-icon src="../../assets/img/chat_selected.svg"></ion-icon>
       </ion-fab-button>
