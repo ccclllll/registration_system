@@ -25,12 +25,14 @@
         </ion-text> -->
     </ion-item>
     <ion-item>
-      <ion-label position="floating">日期</ion-label>
-      <ion-input [disabled]="true" [(ngModel)]="workforce.date"></ion-input>
+      <ion-note slot="start">日期</ion-note>
+      <!-- <ion-input [disabled]="true" [(ngModel)]="workforce.date"></ion-input> -->
+      <ion-label>{{workforce.date | myDatePipe}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">时间段</ion-label>
-      <ion-input [disabled]="true" [(ngModel)]="workforce.timeQuantum"></ion-input>
+      <ion-note slot="start">时间段</ion-note>
+      <!-- <ion-input [disabled]="true" [(ngModel)]="workforce.date"></ion-input> -->
+      <ion-label>{{workforce.timeQuantum === 'am' ? '上午': '下午'}}</ion-label>
     </ion-item>
   </ion-list>
   <ion-button shape="round" expand="full" (click)="addOrder()">确认预约</ion-button>

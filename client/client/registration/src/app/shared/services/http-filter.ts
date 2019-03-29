@@ -6,8 +6,9 @@ import {
   HttpInterceptor, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UrlConfig } from './url.config';
 
-const BASEURL = 'http://localhost:8088';
+const BASEURL = UrlConfig.BASEURL;
 @Injectable()
 export class HttpFilter implements HttpInterceptor {
 

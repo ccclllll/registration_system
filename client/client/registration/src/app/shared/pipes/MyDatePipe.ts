@@ -8,10 +8,14 @@ export class MyDatePipe implements PipeTransform {
 
   transform(value: string, args?: any): string {
 
-    const year = value.substring(0,4);
-    const month = value.substring(4,6);
-    const day = value.substring(6,8);
-    let be = value.substring(8,10);
+
+    const year = value.substring(0, 4);
+    const month = value.substring(4, 6);
+    const day = value.substring(6, 8);
+    if (value.length <= 8) {
+      return  year + '-' + month + '-' + day;
+    }
+    let be = value.substring(8, 10);
 
     be = be === 'am' ? '上午' : '下午';
 

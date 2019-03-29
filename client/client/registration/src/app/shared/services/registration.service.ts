@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-const BASEURL = 'http://localhost:8088';
+import { UrlConfig } from './url.config';
+const BASEURL = UrlConfig.BASEURL;
 
 @Injectable()
 export class RegistrationService {
@@ -15,7 +16,7 @@ export class RegistrationService {
     return this.http.post(`${BASEURL}/api/registration`, registration);
   }
 
-  getRegistrations(id,role) {
+  getRegistrations(id, role) {
     return this.http.get<any[]>(`${BASEURL}/api/registrations?id=${id}&role=${role}`);
   }
 

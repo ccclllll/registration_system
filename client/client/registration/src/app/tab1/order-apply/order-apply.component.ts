@@ -26,12 +26,12 @@ export class OrderApplyComponent implements OnInit {
   }
 
   agree() {
-    this.orderState = 'inactive';
+    this.orderState = 'active';
     this.applyState = true;
   }
 
   disagree() {
-    this.orderState = 'active';
+    this.orderState = 'inactive';
     this.applyState = true;
   }
 
@@ -42,6 +42,8 @@ export class OrderApplyComponent implements OnInit {
     // debugger
     this.billService.updateBill(bill).subscribe(it => {
       console.log(it);
+      this.loadData();
+      this.applyState = false;
     });
   }
 

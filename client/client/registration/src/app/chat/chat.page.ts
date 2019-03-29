@@ -72,7 +72,7 @@ export class ChatPage implements OnInit {
 
   createSockt() {
     if (!this.socket) {
-      this.socket = new WebSocket('ws://localhost:8003');
+      this.socket = new WebSocket('ws://ws.otravel.tk:9100:8003');
     }
 
     // 告知后台次消息是首次连接时的消息

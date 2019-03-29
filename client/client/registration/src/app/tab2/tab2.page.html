@@ -7,10 +7,14 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar placeholder="搜索联系人"></ion-searchbar>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar placeholder="搜索联系人"></ion-searchbar>
   <ion-list>
 
-    <ion-item *ngFor="let data of contacts" [routerLink]="['/chat',data.message.from==user.id?data.message.to:data.message.from]">
+    <ion-item *ngFor="let data of contacts"
+      [routerLink]="['/chat',data.message.from==user.id?data.message.to:data.message.from]">
       <ion-thumbnail slot="start">
         <img src="../../assets/img/girl.png">
       </ion-thumbnail>

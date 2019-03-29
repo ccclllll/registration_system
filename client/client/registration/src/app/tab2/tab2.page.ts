@@ -14,18 +14,24 @@ export class Tab2Page implements OnInit {
   constructor(public messageService: MessageService) {
 
   }
-  ionViewDidEnter() {
+
+  doRefresh(e) {
+    this.messageService.getContacts(this.user.id).subscribe(it => {
+      console.log(it);
+      this.contacts = it;
+      e.target.complete();
+    });
+  }
+
+  ionViewWillEnter() {
+  }
+
+  ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('userVM'));
     this.messageService.getContacts(this.user.id).subscribe(it => {
       console.log(it);
       this.contacts = it;
     });
-  }
-  ngOnInit() {
-    // this.messageService.getContacts(this.user.id).subscribe(it => {
-    //   console.log(it);
-    //   this.contacts = it;
-    // });
   }
 
 

@@ -78,6 +78,8 @@ export class AddOrderComponent implements OnInit {
       // this.router.navigate(['/tabs/tab1/order']);
       if (it.code == '401') {
         this.presentAlert('不要重复预约！');
+      } else {
+        this.presentAlert('预约成功！')
       }
     }, err => {
       this.presentAlert('发生未知错误！请重试');
