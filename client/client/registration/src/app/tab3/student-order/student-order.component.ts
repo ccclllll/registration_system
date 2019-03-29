@@ -11,15 +11,16 @@ export class StudentOrderComponent implements OnInit {
   orders: any[] = [];
   applyState = false;
 
-  constructor(public billServic: BillService) { }
+  constructor(public billService: BillService) { }
 
   ionViewWillEnter() {
     this.loadData();
+    this.user = JSON.parse(localStorage.getItem('userVM'));
   }
   ngOnInit() { }
 
   loadData() {
-    this.billServic.userBills(this.user.id, 'student').subscribe(it => {
+    this.billService.userBills(this.user.id, 'student').subscribe(it => {
       this.orders = it;
     });
   }

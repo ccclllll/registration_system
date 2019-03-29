@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from '../../shared/services/registration.service';
 import { BillService } from '../../shared/services/BillService';
-import { constants } from 'perf_hooks';
 import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
@@ -19,16 +18,14 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() { }
   ionViewDidEnter() {
-
-    if (this.user.role === 'student') {
-      this.getStudentRegistration();
-    }
+    this.getRegistrations();
   }
-  getStudentRegistration() {
-    this.registrationService.getStudnetRegistration(this.user.id,this.user.role).subscribe(it => {
+
+  getRegistrations() {
+    this.registrationService.getRegistrations(this.user.id, this.user.role).subscribe(it => {
       const date = new Date().getTime();
       this.history = it.filter(it2 => {
-        // console.log(parseInt(it2.workforce.date) < parseInt(this.buidDateStr(new Date()))
+        console.log(parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10))
         return parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10);
       });
     });
@@ -93,8 +90,8 @@ export class HistoryComponent implements OnInit {
     let dateStr = date.getFullYear() + '';
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    month = month.length < 2 ? '0' + month : month;
-    day = day.length < 2 ? '0' + day : day;
+    month = month.toString().length < 2 ? '0' + month : month;
+    day = day.toString().length < 2 ? '0' + day : day;
     dateStr = dateStr + month + day;
 
     return dateStr;

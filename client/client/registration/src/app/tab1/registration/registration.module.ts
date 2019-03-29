@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrationPage } from './registration.page';
 import { DoctorMainComponent } from './doctor-main/doctor-main.component';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { PipesModule } from 'src/app/shared/pipes/pipe.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

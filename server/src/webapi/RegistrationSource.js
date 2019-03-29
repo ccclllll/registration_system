@@ -57,8 +57,7 @@ class RegistrationResource {
     try {
    
       let registration = new Registration(ctx.request.body);
-      console.log(registration);
-      
+
       let dbo = await ctx.mongodbUtil.dbo();
       let baseDao = ctx.baseDao;
 
@@ -69,6 +68,7 @@ class RegistrationResource {
   
       if(history.length>0){
         ctx.body = {
+          code: 401,
           err:'the registration is reduplicative'
         }
         return;
@@ -109,7 +109,7 @@ class RegistrationResource {
     let baseDao = ctx.baseDao;
     let res = [];
 
-    if(query.role='doctor'){
+    if(query.role==='doctor'){
       res = await baseDao.find(dbo, 'registration', {
        doctor: query.id
       });

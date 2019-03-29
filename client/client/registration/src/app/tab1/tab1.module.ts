@@ -6,12 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { HistoryComponent } from './history/history.component';
 import { OrderComponent } from './order/order.component';
+import { OrderApplyComponent } from './order-apply/order-apply.component';
+import { PipesModule } from '../shared/pipes/pipe.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    PipesModule,
     RouterModule.forChild([{
       path: '',
       component: Tab1Page
@@ -24,8 +27,11 @@ import { OrderComponent } from './order/order.component';
     }, {
       path: 'order',
       component: OrderComponent
+    }, {
+      path: 'order_apply',
+      component: OrderApplyComponent
     }])
   ],
-  declarations: [Tab1Page, HistoryComponent, OrderComponent]
+  declarations: [Tab1Page, HistoryComponent, OrderComponent, OrderApplyComponent]
 })
 export class Tab1PageModule { }

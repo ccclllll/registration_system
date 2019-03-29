@@ -16,4 +16,8 @@ export class Tab3Page {
     this.auth.clearToken();
     this.router.navigate(['']);
   }
+
+  ionViewWillEnter() {
+    this.user = JSON.parse(localStorage.getItem('userVM'));
+  }
 }

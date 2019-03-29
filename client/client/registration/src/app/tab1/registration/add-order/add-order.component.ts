@@ -3,6 +3,7 @@ import { ModalController, NavParams, LoadingController, AlertController } from '
 import { AuthService } from '../../../shared/services/auth.service';
 import { OfficeService } from '../../../shared/services/OfficeService';
 import { RegistrationService } from '../../../shared/services/registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-order',
@@ -16,14 +17,19 @@ export class AddOrderComponent implements OnInit {
   doctor: any = { name: '12' };
   user: any = {};
   office: any = {};
-  constructor(private modalCtrl: ModalController, navParams: NavParams, public auth: AuthService, public officeService: OfficeService,
-    public registrationService: RegistrationService, public loadingController: LoadingController, public alertController: AlertController) {
-    this.workforce = navParams.get('workforce');
+  constructor(private modalCtrl: ModalController, public navParams: NavParams,
+    public auth: AuthService, public officeService: OfficeService,
+    public registrationService: RegistrationService, public loadingController: LoadingController, public alertController: AlertController,
+    public router: Router) {
+
+  }
+
+  ionViewWillEnter() {
+    this.workforce = this.navParams.get('workforce');
     this.getDoctor();
     this.getUser();
     this.getOffice();
   }
-
 
   getDoctor() {
     this.auth.getUserById(this.workforce.doctor).subscribe(it => {
@@ -62,14 +68,20 @@ export class AddOrderComponent implements OnInit {
     };
     console.log(this.workforce);
     const loading = await this.loadingController.create({
-      message: 'Hellooo',
+      message: '请稍后',
       duration: 2000
     });
     await loading.present();
     this.registrationService.addRegistration(registration).subscribe(it => {
       console.log(it);
       loading.dismiss();
-
+      // this.router.navigate(['/tabs/tab1/order']);
+      if (it.code == '401') {
+        this.presentAlert('不要重复预约！');
+      }
+    }, err => {
+      this.presentAlert('发生未知错误！请重试');
+      // this.router.navigate(['/tabs/tab1/order']);
     });
 
     await loading.onDidDismiss();
@@ -86,7 +98,7 @@ export class AddOrderComponent implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Hellooo',
+      message: '请稍后',
       duration: 2000
     });
     await loading.present();
@@ -96,4 +108,13 @@ export class AddOrderComponent implements OnInit {
     console.log('Loading dismissed!');
   }
 
+  async presentAlert(text) {
+    const alert = await this.alertController.create({
+      header: '消息',
+      message: text,
+      buttons: ['确认']
+    });
+
+    await alert.present();
+  }
 }

@@ -23,7 +23,6 @@ class MessageResource {
 
     // 新增一条消息
     async addMessage(ctx) {
-        console.log('add message')
         let message = new Message(ctx.request.body);
         // id 生成
         message.id = message.date + message.from + message.to;
@@ -68,7 +67,6 @@ class MessageResource {
 
     // 获取与某人的聊天消息 需要有userId contactId （本人id，对方id）
     async getCurrentMessages(ctx) {
-        console.log('get current message')
         let req_query = ctx.request.query;
         try {
             let baseDao = ctx.baseDao;
@@ -87,7 +85,6 @@ class MessageResource {
             res.sort((a,b)=> a.date - b.date);
             ctx.body = res;   
         } catch (err) {
-            console.log(err);
             throw err;
         }
     }
@@ -135,7 +132,6 @@ class MessageResource {
             let baseDao = ctx.baseDao;
 
             for (let key in messageObj) {
-                console.log(key)
                 let res = await baseDao.find(dbo, 'user', {
                     id: key
                 });
@@ -155,8 +151,6 @@ class MessageResource {
                 err: err
             }
         }
-
-        console.log('res');
         return ret;
     }
 }

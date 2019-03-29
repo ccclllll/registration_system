@@ -15,7 +15,7 @@ export class RegistrationService {
     return this.http.post(`${BASEURL}/api/registration`, registration);
   }
 
-  getStudnetRegistration(id,role) {
+  getRegistrations(id,role) {
     return this.http.get<any[]>(`${BASEURL}/api/registrations?id=${id}&role=${role}`);
   }
 

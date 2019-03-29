@@ -130,8 +130,6 @@ class UserResource {
         }
       }
     } catch (err) {
-
-      console.log(err)
       ctx.body = {
         message: '参数错误',
         code: -1

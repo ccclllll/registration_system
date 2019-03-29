@@ -9,11 +9,13 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class Tab2Page implements OnInit {
   contacts: any[] = [];
-  user = JSON.parse(localStorage.getItem('userVM'));
+
+  user: any = {}
   constructor(public messageService: MessageService) {
 
   }
   ionViewDidEnter() {
+    this.user = JSON.parse(localStorage.getItem('userVM'));
     this.messageService.getContacts(this.user.id).subscribe(it => {
       console.log(it);
       this.contacts = it;

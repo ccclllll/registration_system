@@ -61,10 +61,20 @@ class WorkforceResource {
   // 增加排班
   async addWorkforce(ctx){
     let workforce = new Workforce(ctx.request.body);
-    workforce.id = workforce.doctor+ workforce.date;
+    workforce.id = workforce.doctor+ workforce.date + workforce.timeQuantum;
+
     try{
       let baseDao = ctx.baseDao;
       let dbo = await ctx.mongodbUtil.dbo();
+      let find = await baseDao.find(dbo,'workforce',{
+        id: workforce.id
+      })
+      if(find.length>0){
+        ctx.body = {
+          err: 'time is err'
+        };
+        return;
+      }
       let res = await baseDao.add(dbo, 'workforce', workforce);
       ctx.body = res;
     }catch(err){

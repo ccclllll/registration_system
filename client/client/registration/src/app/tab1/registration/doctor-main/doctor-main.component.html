@@ -12,23 +12,10 @@
     </div>
     <div>
       <span>{{doctor[0].name}}</span>
-      <p>内科</p>
+      <p>{{office.name}}</p>
     </div>
   </div>
 
-  <!-- <div class="workforce-list">
-    <div class="workforce-item" *ngFor="let workforce of workforces">
-      <div>
-        <span>{{workforce.date}}</span> <span>{{workforce.timeQuantum}}</span>
-      </div>
-      <div>
-        <span>普通门诊</span>
-      </div>
-      <div>
-        <ion-button (click)="createAddOrderModal(workforce)">挂号</ion-button>
-      </div>
-    </div>
-  </div> -->
 
   <ion-list>
     <ion-list-header>
@@ -39,15 +26,16 @@
         <img src="../../assets/img/doctor.png">
       </ion-thumbnail>
       <ion-label>
-        <span>{{workforce.date}}</span> <span>{{workforce.timeQuantum}}</span>
+        {{workforce.date + workforce.timeQuantum | myDatePipe}}
         <p>普通门诊</p>
       </ion-label>
       <ion-button (click)="createAddOrderModal(workforce)">挂号</ion-button>
     </ion-item>
   </ion-list>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" [routerLink]="['/chat',doctor[0].id]">
-      <ion-fab-button color="light">
-        <ion-icon src="../../assets/img/chat_selected.svg"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+
+  <ion-fab vertical="end" horizontal="end" slot="fixed" [routerLink]="['/chat',doctor[0].id]">
+    <ion-fab-button color="light">
+      <ion-icon src="../../assets/img/chat_selected.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

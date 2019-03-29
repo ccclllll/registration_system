@@ -8,9 +8,13 @@ import { RegistrationService } from '../shared/services/registration.service';
 })
 export class Tab1Page {
   registrations = [];
-  user = JSON.parse(localStorage.getItem('userVM'));
-  constructor(public router: Router, public registrationService: RegistrationService) {
 
+  user: any = {};
+  constructor(public router: Router, public registrationService: RegistrationService) {
+  }
+
+  ionViewWillEnter() {
+    this.user = JSON.parse(localStorage.getItem('userVM'));
     this.getStudentRegistration();
   }
   nav(url: String) {
@@ -18,13 +22,30 @@ export class Tab1Page {
   }
 
   getStudentRegistration() {
-    this.registrationService.getStudnetRegistration(this.user.id).subscribe(it => {
-      console.log(it);
-      const date = new Date().getTime();
+    this.registrationService.getRegistrations(this.user.id, this.user.role).subscribe(it => {
+      const date = new Date();
+
+      const dateStr = this.buidDateStr(date);
+
+
       this.registrations = it.filter(it2 => {
-        console.log(it2);
-        return new Date(it2.date).getTime() > date;
+        console.log(dateStr)
+        console.log(it2.workforce.date)
+        // console.log(parseInt(it2.workforce.date) > parseInt(dateStr))
+        return parseInt(it2.workforce.date, 10) > parseInt(dateStr, 10);
       });
     });
+  }
+
+  buidDateStr(date) {
+    let dateStr = date.getFullYear() + '';
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    month = month.toString().length < 2 ? '0' + month : month;
+    day = day.toString().length < 2 ? '0' + day : day;
+    dateStr = dateStr + month + day;
+
+    return dateStr;
+
   }
 }

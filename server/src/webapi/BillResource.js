@@ -62,6 +62,7 @@ class BillResource {
   async getUserBill(ctx) {
     let req_query = ctx.request.query;
 
+    console.log(req_query)
     try {
       let dbo = await ctx.mongodbUtil.dbo();
       let baseDao = ctx.baseDao;
@@ -74,6 +75,20 @@ class BillResource {
         res = await baseDao.find(dbo, 'bill', {
           doctor: req_query.id
         });
+      }
+      console.log(res)
+      for(let index = 0;index<res.length;index++){
+        let item = res[index];
+        let doctor = await baseDao.find(dbo, 'user', {
+          id: item.doctor
+        });
+  
+        item.doctor = doctor[0];
+
+        let patient = await baseDao.find(dbo, 'user', {
+          id: item.patient
+        })
+        item.patient = patient[0];
       }
       ctx.body = res;
     } catch (err) {
@@ -94,7 +109,7 @@ class BillResource {
     } catch (err) {}
   }
   // 更新申请
-  async updateBill() {
+  async updateBill(ctx) {
     let bill = new Bill(ctx.request.body);
 
     try {
@@ -104,14 +119,10 @@ class BillResource {
         id: bill.id
       });
 
-      await baseDao.update(dbo, 'bill', {
+      ctx.body = await baseDao.update(dbo, 'bill', {
         id: bill.id
       }, {
-        $set: {
-          'state': bill.state,
-          'reaseon': bill.reaseon,
-          'days': bill.days
-        }
+        $set: bill
       })
     } catch (err) {
       throw err;

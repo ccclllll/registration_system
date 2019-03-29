@@ -3,10 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-title *ngIf="template === 'officeTemplate'">
+      选择科室
+    </ion-title>
+    <ion-title *ngIf="template === 'workforceTemplate'">
+      选择医生
+    </ion-title>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+  <ion-item *ngIf="template === 'workforceTemplate'" lines="none">
+    <ion-note (click)="template = 'officeTemplate'" slot="start">返回科室列表</ion-note>
+  </ion-item>
   <ng-container [ngTemplateOutlet]="officeTemplate" *ngIf="template === 'officeTemplate'">
 
   </ng-container>
@@ -28,7 +39,7 @@
 
   <ng-template #workforceTemplate>
 
-    <ion-grid>
+    <!-- <ion-grid>
       <ion-row>
         <ion-col>
           不限
@@ -49,10 +60,10 @@
           周五
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
- 
-      <!-- <ion-list>
+
+    <!-- <ion-list>
         <ion-item *ngFor="let office of offices">
           
           <ion-label>
@@ -64,7 +75,7 @@
         </ion-item>
 
       </ion-list> -->
-      <!-- <ion-row wrap *ngFor="let doctor of officeDoctors">
+    <!-- <ion-row wrap *ngFor="let doctor of officeDoctors">
         <div class="list-item">
           <div>
             <img
@@ -80,23 +91,23 @@
           </div>
         </div> -->
 
-        <ion-list>
+    <ion-list>
 
-          <ion-list-header>
-            <ion-label>医生列表</ion-label>
-          </ion-list-header>
-          <ion-item *ngFor="let doctor of officeDoctors">
-            <ion-thumbnail slot="start">
-              <img src="../../assets/img/doctor.png">
-            </ion-thumbnail>
-            <ion-label>
-              <h2>{{doctor.name}}</h2>
-              <p>{{selectedOffice.name}}</p>
-            </ion-label>
-            <ion-button fill="outline" slot="end" [routerLink]="['/tabs/tab1/registration/doctor',doctor.id]">查看
-            </ion-button>
-          </ion-item>
-        </ion-list>
+      <ion-list-header>
+        <ion-label>医生列表</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let doctor of officeDoctors">
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/doctor.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{doctor.name}}</h2>
+          <p>{{selectedOffice.name}}</p>
+        </ion-label>
+        <ion-button fill="outline" slot="end" [routerLink]="['/tabs/tab1/registration/doctor',doctor.id]">查看
+        </ion-button>
+      </ion-item>
+    </ion-list>
 
 
   </ng-template>

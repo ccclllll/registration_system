@@ -13,7 +13,7 @@ export class ChatPage implements OnInit {
   userId = '12344';
   otherId;
   studentId = '150154057';
-  message: String = '2322343';
+  message: String = '';
   messages: any = [];
   socket;
 
@@ -23,10 +23,13 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
     this.createSockt();
+  }
+
+  ionViewWillEnter() {
     this.routerinfo.params.subscribe(par => {
       this.otherId = par['otherId'];
       console.log(this.otherId);
-      this.auth.getUserById(this.otherId).subscribe(it=>{
+      this.auth.getUserById(this.otherId).subscribe(it => {
         console.log(it);
         this.other = it[0];
         this.getCurrentMessages();
@@ -34,12 +37,10 @@ export class ChatPage implements OnInit {
     });
   }
 
-
   send() {
     const otherId = this.otherId;
     const to = this.userVM.role === 'student' ? this.otherId : this.studentId;
     const from = this.userVM.id;
-    console.log(from === this.userId);
     const date = new Date().getTime();
     const message = {
       date: date,
@@ -54,6 +55,7 @@ export class ChatPage implements OnInit {
 
     // 先存message
     this.messageService.addMessage(message).subscribe(it => {
+      this.message = '';
       if (this.socket) {
         this.socket.send(JSON.stringify(message));
       }

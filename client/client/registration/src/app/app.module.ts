@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceModule } from './shared/services/service.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PipesModule } from './shared/pipes/pipe.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [BrowserModule, IonicModule.forRoot({
     backButtonText: '返回'
   }), AppRoutingModule,
-    HttpClientModule, ServiceModule],
+    HttpClientModule, ServiceModule,PipesModule],
   providers: [
     StatusBar,
     SplashScreen,

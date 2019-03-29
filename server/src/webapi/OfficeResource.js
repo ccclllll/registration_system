@@ -55,7 +55,6 @@ class OfficeResource {
     let query = ctx.request.query;
     let dbo = await ctx.mongodbUtil.dbo();
     let baseDao = ctx.baseDao;
-    console.log(query.office)
     let res = await baseDao.find(dbo, 'user', {office:query.office});
 
     ctx.body = res;
@@ -63,7 +62,6 @@ class OfficeResource {
 
   // 增加科室
   async addOffice(ctx){
-    console.log('office')
     let office = new Office(ctx.request.body);
     try{
       let dbo = await ctx.mongodbUtil.dbo();
