@@ -17,9 +17,9 @@ class RegistrationResource {
       method: 'post',
       option: 'addRegistration'
     }, {
-      url: '/api/student_registration',
+      url: '/api/registrations',
       method: 'get',
-      option: 'getStudentRegistration'
+      option: 'getRegistrations'
     }, {
       url: '/api/doctor_registration',
       method: 'get',
@@ -103,24 +103,22 @@ class RegistrationResource {
   }
 
   // role  id
-  async getStudentRegistration(ctx) {
+  async getRegistrations(ctx) {
     let query = ctx.request.query;
     let dbo = await ctx.mongodbUtil.dbo();
     let baseDao = ctx.baseDao;
-    let res = await baseDao.find(dbo, 'registration', {
-      patientId: query.id
-    });
+    let res = [];
 
+    if(query.role='doctor'){
+      res = await baseDao.find(dbo, 'registration', {
+       doctor: query.id
+      });
+    }else{
+      res = await baseDao.find(dbo, 'registration', {
+        patientId: query.id
+      });
+    }
 
-    // let ret = {
-    //   date: res.date,
-    //   office: office[0],
-    //   doctor: doctor[0],
-    //   workforce: workforce[0],
-    //   patien: patient[0]
-    // }
-
-    console.log(res)
     let ret = [];
 
     for (let index = 0; index < res.length; index++) {

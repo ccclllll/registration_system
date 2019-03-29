@@ -11,7 +11,7 @@ export class BillService {
 
   }
 
-  applyBill(bill) {
+  applyBill(bill): any {
     return this.http.post(`${BASEURL}/api/apply_bill`, bill);
   }
 
@@ -19,7 +19,7 @@ export class BillService {
     return this.http.post(`${BASEURL}/api/update_bill`, bill);
   }
 
-  userBills(id, role) {
-    return this.http.get(`${BASEURL}/api/user_bill?id=${id}&role=${role}`);
+  userBills(id, role): Observable<any[]> {
+    return this.http.get<any[]>(`${BASEURL}/api/user_bill?id=${id}&role=${role}`);
   }
 }

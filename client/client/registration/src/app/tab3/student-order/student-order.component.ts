@@ -9,15 +9,18 @@ import { BillService } from '../../shared/services/BillService';
 export class StudentOrderComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('userVM'));
   orders: any[] = [];
+  applyState = false;
+
   constructor(public billServic: BillService) { }
 
-  applyState = false;
   ionViewWillEnter() {
-    this.billServic.userBills(this.user.id, 'student').subscribe(it => {
-      console.log(it);
-      this.orders = it;
-    });
+    this.loadData();
   }
   ngOnInit() { }
 
+  loadData() {
+    this.billServic.userBills(this.user.id, 'student').subscribe(it => {
+      this.orders = it;
+    });
+  }
 }

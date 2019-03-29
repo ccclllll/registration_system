@@ -25,15 +25,12 @@ export class HistoryComponent implements OnInit {
     }
   }
   getStudentRegistration() {
-    this.registrationService.getStudnetRegistration(this.user.id).subscribe(it => {
-      console.log(it);
+    this.registrationService.getStudnetRegistration(this.user.id,this.user.role).subscribe(it => {
       const date = new Date().getTime();
       this.history = it.filter(it2 => {
-        //console.log(parseInt(it2.workforce.date) < parseInt(this.buidDateStr(new Date()))
-        return parseInt(it2.workforce.date) < parseInt(this.buidDateStr(new Date()));
-    
+        // console.log(parseInt(it2.workforce.date) < parseInt(this.buidDateStr(new Date()))
+        return parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10);
       });
-
     });
   }
 
