@@ -12,6 +12,7 @@ export class UserInfoComponent implements OnInit {
   constructor(public auth: AuthService) { }
 
   ionViewDidEnter() {
+    this.user = JSON.parse(localStorage.getItem('userVM'));
     this.auth.getUserById(this.user.id).subscribe(it => {
       this.userInfo = it[0];
     });

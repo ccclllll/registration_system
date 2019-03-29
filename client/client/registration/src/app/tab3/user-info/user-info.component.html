@@ -3,18 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-title>用户信息</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-label position="floating" *ngIf="user.role==='student'">学号</ion-label>
+    <ion-item *ngIf="user.role==='student'">
+      <ion-label position="floating">学号</ion-label>
       <ion-input [(ngModel)]="userInfo.id" disabled="true"></ion-input>
     </ion-item>
-    <ion-item  *ngIf="user.role==='doctor'">
+
+    <ion-item *ngIf="user.role==='doctor'">
       <ion-label position="floating">工号</ion-label>
-      <ion-input [(ngModel)]="userInfo.code" disabled="true"></ion-input>
+      <ion-input [(ngModel)]="userInfo.id" disabled="true"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label position="floating">姓名</ion-label>
       <ion-input [(ngModel)]="userInfo.name"></ion-input>
