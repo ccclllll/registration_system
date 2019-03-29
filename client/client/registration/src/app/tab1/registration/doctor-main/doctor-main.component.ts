@@ -14,7 +14,7 @@ export class DoctorMainComponent implements OnInit {
 
   doctorId;
 
-  doctor = {};
+  doctor = [{}];
   workforces = [];
   user = {};
   doctorStr = '';
@@ -27,7 +27,7 @@ export class DoctorMainComponent implements OnInit {
       this.workforceService.getDoctorAllWorkforce(this.doctorId).subscribe(it => {
         this.workforces = it;
       });
-      this.doctor = this.auth.getUserById(this.doctorId).subscribe(it => {
+      this.auth.getUserById(this.doctorId).subscribe(it => {
         console.log(it);
         this.doctor = it;
         this.doctorStr = JSON.stringify(this.doctor);

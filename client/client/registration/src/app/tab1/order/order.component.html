@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>我的预约</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-left: 0;margin-right: 0;" *ngFor="let registration of history">
+    <ion-item>
+      <ion-label>就诊人:{{registration.patient.name}}</ion-label>
+      <ion-note slot="end">挂号成功</ion-note>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-note slot="start">就诊科室</ion-note>
+        <ion-label>{{registration.office.name}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-note slot="start">就诊时间</ion-note>
+        <ion-label>{{registration.date | date: 'yyyy-MM-dd'}}</ion-label>
+      </ion-item>
+<!-- 
+      <ion-item lines="none">
+        <ion-button fill="outline" slot="end">申请假条</ion-button>
+      </ion-item> -->
+      <ion-button fill="outline" slot="end" *ngIf="!applyState" [routerLink]="['/chat',registration.doctor.id]">咨询医生</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

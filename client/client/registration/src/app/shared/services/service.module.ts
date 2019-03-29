@@ -7,6 +7,7 @@ import { OfficeService } from './OfficeService';
 import { WorkforceService } from './WorkforceService';
 import { RegistrationService } from './registration.service';
 import { MessageService } from './message.service';
+import { BillService } from './BillService';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MessageService } from './message.service';
     WorkforceService,
     RegistrationService,
     MessageService,
+    BillService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpFilter, multi: true},
   ]
 

@@ -53,24 +53,29 @@ class RegistrationResource {
   // 挂号
   async addRegistration(ctx) {
 
-    let history = await baseDao.find(dbo, 'registration', {
-      workforce: registration.workforce,
-      patientId: registration.patientId
-    });
-
-    if(history.length>0){
-      ctx.body = {
-        err:'the registration is reduplicative'
-      }
-      return;
-    }
-    let registration = new Registration(ctx.request.body);
-    console.log(registration);
-
+ 
     try {
+   
+      let registration = new Registration(ctx.request.body);
+      console.log(registration);
+      
       let dbo = await ctx.mongodbUtil.dbo();
       let baseDao = ctx.baseDao;
 
+      let history = await baseDao.find(dbo, 'registration', {
+        workforce: registration.workforce,
+        patientId: registration.patientId
+      });
+  
+      if(history.length>0){
+        ctx.body = {
+          err:'the registration is reduplicative'
+        }
+        return;
+      }
+
+  
+      registration.id = registration.date + registration.doctor + registration.patientId;
       let workforce = await baseDao.find(dbo, 'workforce', {
         id: registration.workforce
       });

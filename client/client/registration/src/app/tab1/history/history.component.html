@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{user.role === 'student'?'看病记录':'假条请求'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-left: 0;margin-right: 0;" *ngFor="let registration of history">
+    <ion-item>
+      <ion-label>就诊人:{{registration.patient.name}}</ion-label>
+      <ion-note slot="end">已就诊</ion-note>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-note slot="start">就诊科室</ion-note>
+        <ion-label>{{registration.office.name}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-note slot="start">就诊时间</ion-note>
+        <ion-label>{{registration.date | date: 'yyyy-MM-dd'}}</ion-label>
+      </ion-item>
+
+
+      <ion-list *ngIf="applyState">
+        <ion-list-header>
+          <ion-label>请输入请假时间</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-note slot="start">开始时间</ion-note>
+          <ion-datetime display-format="MMM DD, YYYY" picker-format="YYYY MMMM DD" [(ngModel)]="bill.startDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-note slot="start">结束时间</ion-note>
+          <ion-datetime display-format="MMM DD, YYYY " picker-format="YYYY MMMM DD" [(ngModel)]="bill.endDate"></ion-datetime>
+        </ion-item>
+      </ion-list>
+
+
+      <ion-item lines="none">
+        <ion-button fill="outline" slot="start" *ngIf="!applyState" [routerLink]="['/chat',registration.doctor.id]">咨询医生</ion-button>
+        <ion-button fill="outline" slot="end" (click)="applyState = true" *ngIf="!applyState">申请假条</ion-button>
+        <ion-button fill="outline" slot="start" (click)="applyBill(registration)" *ngIf="applyState">确认</ion-button>
+        <ion-button fill="outline" slot="end" (click)="applyState = false" *ngIf="applyState">取消</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

@@ -18,9 +18,13 @@ export class Tab1Page {
   }
 
   getStudentRegistration() {
-    this.registrationService.getStudnetRegistration(this.user.id).subscribe(it=>{
+    this.registrationService.getStudnetRegistration(this.user.id).subscribe(it => {
       console.log(it);
-      this.registrations = it;
-    })
+      const date = new Date().getTime();
+      this.registrations = it.filter(it2 => {
+        console.log(it2);
+        return new Date(it2.date).getTime() > date;
+      });
+    });
   }
 }

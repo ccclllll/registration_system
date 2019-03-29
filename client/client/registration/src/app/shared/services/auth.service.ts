@@ -45,6 +45,7 @@ export class AuthService {
 
   clearToken() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userVM');
   }
 
   register(username: string, email: string, password: string): Observable<any> {

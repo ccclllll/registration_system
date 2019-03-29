@@ -13,11 +13,17 @@ export class Tab2Page implements OnInit {
   constructor(public messageService: MessageService) {
 
   }
-  ngOnInit() {
+  ionViewDidEnter() {
     this.messageService.getContacts(this.user.id).subscribe(it => {
       console.log(it);
       this.contacts = it;
-    })
+    });
+  }
+  ngOnInit() {
+    // this.messageService.getContacts(this.user.id).subscribe(it => {
+    //   console.log(it);
+    //   this.contacts = it;
+    // });
   }
 
 

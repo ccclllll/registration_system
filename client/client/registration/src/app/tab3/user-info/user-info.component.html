@@ -8,40 +8,29 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label position="floating">学号</ion-label>
-      <ion-input></ion-input>
+      <ion-label position="floating" *ngIf="user.role==='student'">学号</ion-label>
+      <ion-input [(ngModel)]="userInfo.id" disabled="true"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item  *ngIf="user.role==='doctor'">
       <ion-label position="floating">工号</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="userInfo.code" disabled="true"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">姓名</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="userInfo.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">性别</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="userInfo.sex"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">出生年月</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="userInfo.bornDate"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">院系</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">班级</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
+
+    <ion-item *ngIf="user.role==='doctor'">
       <ion-label position="floating">科室</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">出生年月</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="userInfo.office" disabled="true"></ion-input>
     </ion-item>
   </ion-list>
   <ion-button shape="round" expand="full">保存</ion-button>
