@@ -20,4 +20,7 @@ export class RegistrationService {
     return this.http.get<any[]>(`${BASEURL}/api/registrations?id=${id}&role=${role}`);
   }
 
+  updateRegistration(registration) {
+    return this.http.post(`${BASEURL}/api/update_registration`, registration);
+  }
 }

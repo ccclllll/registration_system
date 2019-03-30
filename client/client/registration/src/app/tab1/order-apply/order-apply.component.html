@@ -32,15 +32,15 @@
           <ion-note slot="start">结束时间</ion-note>
           <ion-label>{{order.endDate | date: 'yyyy-MM-dd'}}</ion-label>
         </ion-item>
-        <ion-list *ngIf="this.applyState">
+        <ion-list *ngIf="this.applyState  && order.id === selectedRegistration.id ">
           <ion-item>
             <ion-note>诊断建议</ion-note>
             <ion-input [(ngModel)]='order.reason'></ion-input>
           </ion-item>
         </ion-list>
         <ion-item lines="none">
-          <ion-button fill="outline" slot="start" *ngIf="!this.applyState" (click)="agree()">同意申请</ion-button>
-          <ion-button fill="outline" slot="end" *ngIf="!this.applyState" (click)="disagree()">驳回申请</ion-button>
+          <ion-button fill="outline" slot="start" *ngIf="!this.applyState" (click)="agree(order)">同意申请</ion-button>
+          <ion-button fill="outline" slot="end" *ngIf="!this.applyState" (click)="disagree(order)">驳回申请</ion-button>
           <ion-button fill="outline" slot="start" *ngIf="this.applyState" (click)="updateBill(order)">确认</ion-button>
           <ion-button fill="outline" slot="end" *ngIf="this.applyState" (click)="updateBill(order)">取消</ion-button>
         </ion-item>

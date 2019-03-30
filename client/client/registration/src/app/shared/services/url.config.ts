@@ -1,3 +1,3 @@
 export class UrlConfig {
-  static BASEURL: String = ' http://tt.otravel.tk:9100';
+  static BASEURL: String = 'http://47.100.166.151:8088';
 }

@@ -24,6 +24,10 @@ class RegistrationResource {
       url: '/api/doctor_registration',
       method: 'get',
       option: 'getDoctorRegistration'
+    },{
+      url: '/api/update_registration',
+      method: 'post',
+      option: 'updateRegistration'
     }];
   }
 
@@ -38,6 +42,32 @@ class RegistrationResource {
     });
     ctx.body = res;
   }
+
+
+
+  async updateRegistration(ctx){
+    let registration = new Registration(ctx.request.body);
+
+ 
+    try {
+      let dbo = await ctx.mongodbUtil.dbo();
+      let baseDao = ctx.baseDao;
+
+      ctx.body = await baseDao.update(dbo, 'registration', {
+        id: registration.id
+      }, {
+        $set: registration
+      })
+    } catch (err) {
+      throw err;
+      res.body = {
+        err: JSON.stringify(err)
+      }
+    }
+
+  }
+
+
 
   // 获取科室所有医生 需要科室参数
   async getAllDoctors(ctx) {

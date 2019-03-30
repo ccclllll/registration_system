@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
 import { AuthService } from '../shared/services/auth.service';
+import { IonContent } from '@ionic/angular';
+import { ConcatSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-chat',
@@ -19,11 +21,15 @@ export class ChatPage implements OnInit {
 
   other: any = {};
   userVM = JSON.parse(localStorage.getItem('userVM'));
-  constructor(private routerinfo: ActivatedRoute, public messageService: MessageService, public auth: AuthService) { }
+  @ViewChild(IonContent) content: IonContent;
+  constructor(private routerinfo: ActivatedRoute, public messageService: MessageService, public auth: AuthService,
+    private el: ElementRef,
+    private renderer2: Renderer2) { }
 
   ngOnInit() {
     this.createSockt();
   }
+
 
   ionViewWillEnter() {
     this.routerinfo.params.subscribe(par => {
@@ -33,6 +39,7 @@ export class ChatPage implements OnInit {
         console.log(it);
         this.other = it[0];
         this.getCurrentMessages();
+
       });
     });
   }
@@ -52,7 +59,9 @@ export class ChatPage implements OnInit {
     };
 
     this.messages.push(message);
-
+    setTimeout(() => {
+      this.content.scrollToBottom();
+    }, 1000);
     // 先存message
     this.messageService.addMessage(message).subscribe(it => {
       this.message = '';
@@ -66,13 +75,16 @@ export class ChatPage implements OnInit {
   getCurrentMessages() {
     this.messageService.getCurrentMessages(this.userVM.id, this.other.id).subscribe(it => {
       this.messages = it;
+      setTimeout(() => {
+        this.content.scrollToBottom();
+      }, 1000);
     });
   }
 
 
   createSockt() {
     if (!this.socket) {
-      this.socket = new WebSocket('ws://ws.otravel.tk:9100:8003');
+      this.socket = new WebSocket('ws://47.100.166.151:8003');
     }
 
     // 告知后台次消息是首次连接时的消息

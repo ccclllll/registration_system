@@ -9,27 +9,24 @@ import { RegistrationService } from '../../shared/services/registration.service'
 export class OrderComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('userVM'));
   history = [];
+  selectedRegistration: any = {};
   constructor(public registrationService: RegistrationService) { }
 
   ngOnInit() { }
   ionViewDidEnter() {
     this.user = JSON.parse(localStorage.getItem('userVM'));
 
+    this.selectedRegistration = {};
     this.getStudentRegistration();
   }
   getStudentRegistration() {
-    console.log(this.user)
     this.registrationService.getRegistrations(this.user.id, this.user.role).subscribe(it => {
       // console.log(it);
       const date = new Date();
-
       const dateStr = this.buidDateStr(date);
-
-      console.log(dateStr)
       this.history = it.filter(it2 => {
-
         // console.log(parseInt(it2.workforce.date) > parseInt(dateStr))
-        return parseInt(it2.workforce.date, 10) > parseInt(dateStr, 10);
+        return (parseInt(it2.workforce.date, 10) > parseInt(dateStr, 10) && it2.state !== 'end');
       });
     });
   }
@@ -44,5 +41,20 @@ export class OrderComponent implements OnInit {
 
     return dateStr;
 
+  }
+
+  updateOrder(registration) {
+    registration.state = 'end';
+
+    // registration.
+    registration.doctor = registration.doctor.id;
+    registration.workforce = registration.workforce.id;
+    registration.patient = registration.patient.id;
+    registration.office = registration.office.id;
+
+    this.registrationService.updateRegistration(registration).subscribe(it => {
+      console.log(it);
+      this.getStudentRegistration();
+    });
   }
 }

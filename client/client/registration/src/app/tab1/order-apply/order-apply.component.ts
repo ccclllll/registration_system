@@ -11,11 +11,13 @@ export class OrderApplyComponent implements OnInit {
   orders: any[] = [];
   applyState = false;
   orderState = 'disagree';
+  selectedRegistration: any = {};
 
   constructor(public billService: BillService) { }
 
   ionViewWillEnter() {
     this.loadData();
+    this.selectedRegistration = {};
   }
   ngOnInit() { }
 
@@ -25,14 +27,16 @@ export class OrderApplyComponent implements OnInit {
     });
   }
 
-  agree() {
+  agree(order) {
     this.orderState = 'active';
     this.applyState = true;
+    this.selectedRegistration = order;
   }
 
-  disagree() {
+  disagree(order) {
     this.orderState = 'inactive';
     this.applyState = true;
+    this.selectedRegistration = order;
   }
 
   updateBill(bill) {

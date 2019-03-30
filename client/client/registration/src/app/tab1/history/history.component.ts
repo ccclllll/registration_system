@@ -13,20 +13,22 @@ export class HistoryComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('userVM'));
   history = [];
   bill: any = {};
+  selectedRegistration: any = {};
   constructor(public registrationService: RegistrationService, public billService: BillService,
     public loadingController: LoadingController, public alertController: AlertController) { }
 
   ngOnInit() { }
   ionViewDidEnter() {
     this.getRegistrations();
+    this.selectedRegistration = {};
   }
 
   getRegistrations() {
     this.registrationService.getRegistrations(this.user.id, this.user.role).subscribe(it => {
       const date = new Date().getTime();
       this.history = it.filter(it2 => {
-        console.log(parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10))
-        return parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10);
+        // console.log(parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10))
+        return (parseInt(it2.workforce.date, 10) < parseInt(this.buidDateStr(new Date()), 10) || it2.state === 'end');
       });
     });
   }

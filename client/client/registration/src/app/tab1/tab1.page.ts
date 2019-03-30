@@ -29,10 +29,9 @@ export class Tab1Page {
 
 
       this.registrations = it.filter(it2 => {
-        console.log(dateStr)
-        console.log(it2.workforce.date)
+
         // console.log(parseInt(it2.workforce.date) > parseInt(dateStr))
-        return parseInt(it2.workforce.date, 10) > parseInt(dateStr, 10);
+        return (parseInt(it2.workforce.date, 10) > parseInt(dateStr, 10) && it2.state !== 'end');
       });
     });
   }
